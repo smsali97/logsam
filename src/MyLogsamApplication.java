@@ -1,5 +1,6 @@
 
 
+import com.graphics.LogoGUI;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -24,5 +25,7 @@ public class MyLogsamApplication {
         visitor.visit(tree);
 
         visitor.instructions.forEach(e -> System.out.println(Arrays.asList(e) + " "));
+
+        LogoGUI.startGUI(visitor.instructions);
     }
 }

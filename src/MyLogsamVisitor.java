@@ -58,13 +58,13 @@ public class MyLogsamVisitor extends LogsamBaseVisitor<Integer> {
 
             if (  ctx.start.getType() == LogsamParser.Fwd ) {
 
-                instructions.add(new String[] { "ADD", "POSY" , String.valueOf(value * Math.cos(theta)) } );
-                instructions.add(new String[] { "ADD", "POSX" , String.valueOf(value * Math.sin(theta)) } );
+                instructions.add(new String[] { "ADD", "POSY" , String.valueOf(value * Math.cos(Math.toRadians(theta))) } );
+                instructions.add(new String[] { "ADD", "POSX" , String.valueOf(value * Math.sin(Math.toRadians(theta))) } );
 
             }
             else if (  ctx.start.getType() == LogsamParser.Bwd ) {
-                instructions.add(new String[] { "SUB", "POSY" , String.valueOf(value * Math.cos(theta)) } );
-                instructions.add(new String[] { "ADD", "POSX" , String.valueOf(value * Math.sin(theta)) } );
+                instructions.add(new String[] { "SUB", "POSY" , String.valueOf(value * Math.cos(Math.toRadians(theta))) } );
+                instructions.add(new String[] { "ADD", "POSX" , String.valueOf(value * Math.sin(Math.toRadians(theta))) } );
             }
             else if (  ctx.start.getType() == LogsamParser.Right ) {
                 value = value % 360;
