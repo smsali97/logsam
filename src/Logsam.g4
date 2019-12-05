@@ -1,15 +1,17 @@
 grammar Logsam;
 r : statement+;
-statement : let | mvmt | clear | loop ;
+statement : let | mvmt | clear | whileloop | forloop | ifstmt | switchcolor | clear;
 let : Variable '=' expr ;
-loop : Loop ( bool_expr );
-bool_expr : bool_compare
-
-                | bool_compare Logops bool_compare;
-bool_compare :  (Int | Variable) Relops (Int | Variable)
-                | '(' bool_compare ')';
+ifstmt : 'if' bool_expr 'then' statement+ 'endif';
+whileloop : Loop ( bool_expr );
+forloop : 'for' Int '..' Int statement* 'endfor';
+bool_expr : bool_compare logop=Logops bool_compare;
+bool_compare :  bool_compare relop=Relops bool_compare
+                        | Int
+                        | Variable;
 mvmt : (Fwd | Bwd | Right | Left) expr;
 clear : Clear;
+switchcolor : 'switch' color=('RED'|'WHITE'|'BLUE'|'PURPLE'|'GREEN'|'YELLOW'|'TRANSPARENT');
 expr : expr op=('*'|'/') expr #MulDiv
         | expr op=('+'|'-') expr #AddSub
         | Int  #Int
@@ -17,8 +19,8 @@ expr : expr op=('*'|'/') expr #MulDiv
         | '(' expr ')' #Paran
         ;
 
-
 WS : [ \n\t\r]+ -> skip;
+COMMENT: '//' .*? '\n' -> skip;
 Fwd : 'fd' | 'FORWARD' ;
 Bwd : 'bk' | 'BACK' ;
 Right : 'rt' | 'RIGHT' ;

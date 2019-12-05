@@ -1,0 +1,14 @@
+switch RED
+fd 50
+rt 90
+switch BLUE
+fd 50
+rt 90
+switch YELLOW
+fd 50
+rt 90
+switch GREEN
+fd 50
+rt 90
+switch TRANSPARENT
+fd 50

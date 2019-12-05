@@ -73,11 +73,52 @@ public class LogoGUI extends Application {
         while (instrIterator.hasNext()) {
 
 
-
             String[] i = instrIterator.next();
-            String instruction = i[0];
-            String variable = i[1];
-            float value = Float.parseFloat(i[2]);
+            String instruction, variable;
+            float value;
+            instruction = i[0];
+
+            if (instruction.equals("CLEAR")) {
+                Color temp = (Color) gc.getFill();
+                gc.setFill(Color.BLACK);
+                gc.fillRect(0,0,APP_WIDTH,APP_HEIGHT);
+                continue;
+            }
+
+            variable = i[1];
+            if (instruction.equals("SWITCH")) {
+                switch ( variable) {
+                    case "BLACK":
+                        gc.setStroke(Color.BLACK);
+                        break;
+                    case "GREEN":
+                        gc.setStroke(Color.GREEN);
+                        break;
+                    case "BLUE":
+                        gc.setStroke(Color.BLUE);
+                        break;
+                    case "RED":
+                        gc.setStroke(Color.RED);
+                        break;
+                    case "PURPLE":
+                        gc.setStroke(Color.PURPLE);
+                        break;
+                    case "YELLOW":
+                        gc.setStroke(Color.YELLOW);
+                        break;
+                    case "WHITE":
+                        gc.setStroke(Color.WHITE);
+                        break;
+                    case "TRANSPARENT":
+                        gc.setStroke(Color.TRANSPARENT);
+                        break;
+                    default:
+                        break;
+                }
+                continue;
+            }
+
+            value = Float.parseFloat(i[2]);
 
             // read in pairs
                 if  (variable.equals("THETA") ) {

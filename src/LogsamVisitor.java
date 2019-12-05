@@ -28,11 +28,23 @@ public interface LogsamVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLet(LogsamParser.LetContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LogsamParser#loop}.
+	 * Visit a parse tree produced by {@link LogsamParser#ifstmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLoop(LogsamParser.LoopContext ctx);
+	T visitIfstmt(LogsamParser.IfstmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LogsamParser#whileloop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileloop(LogsamParser.WhileloopContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LogsamParser#forloop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForloop(LogsamParser.ForloopContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LogsamParser#bool_expr}.
 	 * @param ctx the parse tree
@@ -57,6 +69,12 @@ public interface LogsamVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitClear(LogsamParser.ClearContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LogsamParser#switchcolor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSwitchcolor(LogsamParser.SwitchcolorContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code MulDiv}
 	 * labeled alternative in {@link LogsamParser#expr}.
