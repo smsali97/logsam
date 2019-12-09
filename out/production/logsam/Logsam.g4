@@ -1,10 +1,11 @@
 grammar Logsam;
 r : statement+;
-statement : let | mvmt | clear | loop | ifstmt | switchcolor | clear;
+statement : let | mvmt | clear | whileloop | forloop | ifstmt | switchcolor | clear;
 let : Variable '=' expr ;
 ifstmt : 'if' bool_expr 'then' statement+ 'endif';
-loop : Loop ( bool_expr );
-bool_expr : bool_compare logop=Logops bool_compare;
+whileloop : Loop bool_expr statement* 'endwhile';
+forloop : 'for' Int '..' Int statement* 'endfor';
+bool_expr : bool_compare logop=Logops bool_compare | bool_compare;
 bool_compare :  bool_compare relop=Relops bool_compare
                         | Int
                         | Variable;

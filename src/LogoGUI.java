@@ -1,5 +1,3 @@
-package com.graphics;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
@@ -13,14 +11,12 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class LogoGUI extends Application {
 
     private static List<String[]> instructions;
+    private HashMap<String, Integer> addresses = new HashMap<>();
     private static final int APP_WIDTH = 600;
     private static final int APP_HEIGHT = 600;
 
@@ -69,11 +65,11 @@ public class LogoGUI extends Application {
         gc.setFill(Color.WHITE);
         gc.setStroke(Color.WHITE);
 
+        int ctr = 0;
+
         ListIterator<String[]> instrIterator = instructions.listIterator();
-        while (instrIterator.hasNext()) {
-
-
-            String[] i = instrIterator.next();
+        for (; ctr < instructions.size(); ctr++) {
+            String[] i = instructions.get(ctr);
             String instruction, variable;
             float value;
             instruction = i[0];
@@ -86,7 +82,25 @@ public class LogoGUI extends Application {
             }
 
             variable = i[1];
-            if (instruction.equals("SWITCH")) {
+
+            if (instruction.equals("LOOP")) {
+                String loopVar = variable;
+                addresses.put(loopVar,ctr-1);
+                int loopCtr = MyLogsamVisitor.symbolTable.get(loopVar);
+                MyLogsamVisitor.symbolTable.put(loopVar, loopCtr + 1);
+                continue;
+            }
+
+            if ( instruction.equals("CJ")) {
+                int checkValue = Integer.parseInt(variable.split(" ")[1]);
+                String gotoAddress = i[2].split(" ")[1];
+
+                int loopCtr = MyLogsamVisitor.symbolTable.get(gotoAddress);
+                if ( loopCtr < checkValue) ctr = addresses.get(gotoAddress);
+                continue;
+            }
+
+            else if (instruction.equals("SWITCH")) {
                 switch ( variable) {
                     case "BLACK":
                         gc.setStroke(Color.BLACK);
@@ -132,7 +146,13 @@ public class LogoGUI extends Application {
                     }
                 }
                 else if ( (variable.equals("POSX") || variable.equals("POSY") ) && instrIterator.hasNext()) {
-                String[] i2 = instrIterator.next();
+
+                    double cosTheta, sinTheta;
+                    cosTheta = Math.cos(Math.toRadians(theta));
+                    sinTheta = Math.sin(Math.toRadians(theta));
+
+
+                String[] i2 = instructions.get(++ctr);
                 String instruction2 = i2[0];
                 String variable2 = i2[1];
                 float value2 = Float.parseFloat(i2[2]);
@@ -144,19 +164,19 @@ public class LogoGUI extends Application {
                     case "POSY":
                         switch ( instruction) {
                             case "ADD":
-                                newPosY += value;
+                                newPosY += value * cosTheta;
                                 break;
                             case "SUB":
-                                newPosY -= value;
+                                newPosY -= value * cosTheta;
                         }
                         break;
                     case "POSX":
                         switch ( instruction) {
                             case "ADD":
-                                newPosX += value;
+                                newPosX += value * sinTheta ;
                                 break;
                             case "SUB":
-                                newPosX -= value;
+                                newPosX -= value * sinTheta;
                         }
                         break;
                 }
@@ -165,19 +185,19 @@ public class LogoGUI extends Application {
                     case "POSY":
                         switch ( instruction2) {
                             case "ADD":
-                                newPosY += value2;
+                                newPosY += value2 * cosTheta;
                                 break;
                             case "SUB":
-                                newPosY -= value2;
+                                newPosY -= value2 * cosTheta;
                         }
                         break;
                     case "POSX":
                         switch ( instruction2) {
                             case "ADD":
-                                newPosX += value2;
+                                newPosX += value2 * sinTheta;
                                 break;
                             case "SUB":
-                                newPosX -= value2;
+                                newPosX -= value2 * sinTheta;
                         }
                         break;
                 }
