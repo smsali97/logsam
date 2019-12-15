@@ -1,0 +1,7 @@
+switch RED
+nty = 90
+fty = 45
+fd 25
+rt fty
+fd 25
+rt fty

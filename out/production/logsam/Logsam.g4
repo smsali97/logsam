@@ -11,12 +11,12 @@ bool_compare :  bool_compare relop=Relops bool_compare
                         | Variable;
 mvmt : (Fwd | Bwd | Right | Left) expr;
 clear : Clear;
-switchcolor : 'switch' color=('RED'|'WHITE'|'BLUE'|'PURPLE'|'GREEN'|'YELLOW'|'TRANSPARENT');
+switchcolor : 'switch' color=('RED'|'WHITE'|'BLUE'|'PURPLE'|'GREEN'|'YELLOW'|'CYAN'|'CORAL'|'FUCHSIA'|'AQUA'|'LIGHTBLUE'|'TRANSPARENT');
 expr : expr op=('*'|'/') expr #MulDiv
         | expr op=('+'|'-') expr #AddSub
         | Int  #Int
         | Variable #Var
-        | '(' expr ')' #Paran
+        |  '(' expr ')' #Paran
         ;
 
 WS : [ \n\t\r]+ -> skip;

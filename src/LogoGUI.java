@@ -111,8 +111,20 @@ public class LogoGUI extends Application {
                     case "BLUE":
                         gc.setStroke(Color.BLUE);
                         break;
-                    case "RED":
-                        gc.setStroke(Color.RED);
+                    case "AQUA":
+                        gc.setStroke(Color.AQUA);
+                        break;
+                    case "LIGHTBLUE":
+                        gc.setStroke(Color.LIGHTBLUE);
+                        break;
+                    case "CORAL":
+                        gc.setStroke(Color.CORAL);
+                        break;
+                    case "CYAN":
+                        gc.setStroke(Color.CYAN);
+                        break;
+                    case "FUCHSIA":
+                        gc.setStroke(Color.FUCHSIA);
                         break;
                     case "PURPLE":
                         gc.setStroke(Color.PURPLE);

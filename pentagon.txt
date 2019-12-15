@@ -1,0 +1,7 @@
+switch RED
+x = 50
+y = 72
+for 1 .. 6
+fd x
+rt y
+endfor

@@ -21,11 +21,11 @@ public class MyLogsamVisitor extends LogsamBaseVisitor<Integer> {
     public Integer visitLet(LogsamParser.LetContext ctx) {
         String id = ctx.Variable().getText(); // id is left-hand side of '='
         int value = visit(ctx.expr()); // compute value of expression on right
-        symbolTable.put(id, value); // store it in our memory
-        return value;
+        symbolTable.put(id ,value);
 
+
+        return 0;
     }
-
 
     @Override
     public Integer visitForloop(LogsamParser.ForloopContext ctx) {
@@ -120,7 +120,8 @@ public class MyLogsamVisitor extends LogsamBaseVisitor<Integer> {
     public Integer visitVar(LogsamParser.VarContext ctx) {
         String id = ctx.Variable().getText();
         if (symbolTable.containsKey(id)) return symbolTable.get(id);
-        System.err.println("Variable not found in Symbol Table. Returning 0");
+        System.err.println("Variable not found in Symbol Table.");
+        System.exit(1);
         return 0;
     }
 

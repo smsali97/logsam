@@ -1,3 +1,4 @@
+// square
 switch RED
 fd 50
 rt 90
@@ -14,6 +15,7 @@ switch TRANSPARENT
 fd 100
 // cs
 switch PURPLE
+// circle
 for 1 .. 366
 fd 1
 rt 1
@@ -24,5 +26,4 @@ lt 120
 fd 50
 endfor
 switch TRANSPARENT
-x = 50
-fd y
+
