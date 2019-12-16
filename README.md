@@ -10,6 +10,10 @@ A mini-compiler for the LOGO graphical language
 - **Code Optimization:**  Generating Constant-Folding and Dead Code elimination for the code
 - **Target Code Generation**: Generating the Drawing using GUI from JavaFX Graphics Context
 
+## Sample Parse Tree Output:
+![](idea64_ynL8UDKCrb.png)
+
 ## Sample Output:
 
 ![](logo_pic.png)
+
